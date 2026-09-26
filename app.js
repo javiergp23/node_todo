@@ -17,5 +17,29 @@ function displayMenu(){
     console.log("4.- Salir")
 }
 
+function chooseOption(){
+    rl.question("Elige una opcion, digita el numero de la opcion: ", (choice) =>{
+        switch(choice){
+            case "1":
+                console.log("Crear tarea");
+                break;
+            case "2":
+                console.log("Listar tareas");
+                break;
+            case "3":
+                console.log("Completar tareas");
+                break;
+            case "4":
+                console.log(chalk.yellow("Salir"));
+                rl.close();
+                break;
+            default:
+                console.log("Opcion no valida");
+                chooseOption();    
+        }
+    })
+}
+
 displayMenu();
+chooseOption();
 
