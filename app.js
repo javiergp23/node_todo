@@ -9,6 +9,15 @@ const rl = createInterface({
     output: process.stdout,
 })
 
+function addTask(){
+    rl.question("Escribe la tarea: ", (task) => {
+        tasks.push({task, completed: false});
+        console.log(chalk.greenBright.bold("Tarea agregada exitosamente"));
+        displayTasks();
+        chooseOption();
+    })
+}
+
 function displayMenu(){
     console.log(chalk.redBright.bold("To Do App")),
     console.log(chalk.blueBright.bold('Menu de opciones:'))
@@ -22,7 +31,7 @@ function chooseOption(){
     rl.question("Elige una opcion, digita el numero de la opcion: ", (choice) =>{
         switch(choice){
             case "1":
-                console.log("Crear tarea");
+                addTask();
                 break;
             case "2":
                 console.log("Listar tareas");
@@ -41,6 +50,8 @@ function chooseOption(){
         }
     })
 }
+
+
 
 displayMenu();
 chooseOption();
