@@ -10,13 +10,20 @@ const rl = createInterface({
 })
 
 function addTask(){
-    rl.question("Escribe la tarea: ", (task) => {
+    rl.question(chalk.bgMagentaBright("Escribe la tarea: "), (task) => {
         tasks.push({task, completed: false});
         console.log(chalk.greenBright.bold("Tarea agregada exitosamente"));
-        displayTasks();
         chooseOption();
     })
 }
+
+function listTasks(){
+    console.log(chalk.yellow.bold("Tareas por hacer: "));
+    tasks.forEach((task, index) => {
+        let status = task.completed ? "✅"  : "❌";
+        console.log(chalk.blueBright(`${index + 1}. ${status} - ${task.task}`))
+    })
+}   
 
 function displayMenu(){
     console.log(chalk.redBright.bold("To Do App")),
@@ -34,7 +41,7 @@ function chooseOption(){
                 addTask();
                 break;
             case "2":
-                console.log("Listar tareas");
+                listTasks();
                 break;
             case "3":
                 console.log("Completar tareas");
