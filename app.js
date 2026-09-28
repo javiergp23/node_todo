@@ -18,12 +18,37 @@ function addTask(){
 }
 
 function listTasks(){
-    console.log(chalk.yellow.bold("Tareas por hacer: "));
-    tasks.forEach((task, index) => {
-        let status = task.completed ? "✅"  : "❌";
-        console.log(chalk.blueBright(`${index + 1}. ${status} - ${task.task}`))
-    })
-}   
+    if(tasks.length === 0){
+        console.log(chalk.greenBright.bold("No hay tareas por hacer"));
+        chooseOption();
+    }else{
+        console.log(chalk.yellow.bold("Tareas por hacer: "));
+        tasks.forEach((task, index) => {
+            let status = task.completed ? "✅"  : "❌";
+            if(task.completed){
+                console.log(chalk.greenBright(`${index + 1}. ${status} - ${task.task}`))
+            }else{
+                console.log(chalk.redBright(`${index + 1}. ${status} - ${task.task}`))
+            }
+        })
+        chooseOption();
+    }
+} 
+
+function completeTask(){
+    rl.question(chalk.bgMagentaBright("Escribe el numero de la tarea que quieres completar: "), (taskNumber) =>{
+        const index = parseInt(taskNumber) - 1;
+        if(index >= 0 && index < tasks.length){
+            tasks[index].completed = true;
+            console.log(chalk.greenBright.bold("Tarea completada exitosamente"));
+            chooseOption();
+        }else{
+            console.log(chalk.redBright.bold("Numero de tarea invalida"));
+            completeTask();
+        }
+    }
+    )
+}
 
 function displayMenu(){
     console.log(chalk.redBright.bold("To Do App")),
@@ -44,7 +69,7 @@ function chooseOption(){
                 listTasks();
                 break;
             case "3":
-                console.log("Completar tareas");
+                completeTask();
                 break;
             case "4":
                 console.log(chalk.yellow.bold("Salir"));
