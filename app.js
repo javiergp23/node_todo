@@ -1,7 +1,6 @@
 import {createInterface} from 'readline';
 import chalk from 'chalk';
 
-
 const tasks = [];
 
 const rl = createInterface({
@@ -82,8 +81,6 @@ function chooseOption(){
         }
     })
 }
-
-
 
 displayMenu();
 chooseOption();
