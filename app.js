@@ -11,6 +11,7 @@ const rl = createInterface({
 
 function displayMenu(){
     console.log(chalk.redBright.bold("To Do App")),
+    console.log(chalk.blueBright.bold('Menu de opciones:'))
     console.log("1.- Agregar Tarea"),
     console.log("2.- Listar Tareas"),
     console.log("3.- Completar Tarea"),
@@ -30,12 +31,13 @@ function chooseOption(){
                 console.log("Completar tareas");
                 break;
             case "4":
-                console.log(chalk.yellow("Salir"));
+                console.log(chalk.yellow.bold("Salir"));
                 rl.close();
                 break;
             default:
-                console.log("Opcion no valida");
+                console.log(chalk.red.bold("Opcion no valida"));
                 chooseOption();    
+                break;
         }
     })
 }
