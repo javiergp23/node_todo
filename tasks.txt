@@ -1,1 +1,2 @@
-aprender node|false
+aprender node|true
+optimizar imagenes|false

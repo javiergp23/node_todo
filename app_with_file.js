@@ -84,7 +84,7 @@ function loadTasks(){
 }
 
 function saveTasks(){
-    const data = tasks.map(task => `${task.task}|${task.completed}`).join("\n");
+    const data = tasks.map(task => `${task.task} | ${task.completed}`).join("\n");
     writeFileSync(DB_FILE, data, "utf-8");
     console.log(chalk.green.bold("Tarea agregada a la DB con exito"))
 }
